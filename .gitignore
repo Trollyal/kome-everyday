@@ -1,0 +1,12 @@
+# Device backups, private context and temporary QA must never be published.
+*backup*.json
+*handoff*
+*brief*
+.DS_Store
+node_modules/
+.playwright-cli/
+test-results/
+playwright-report/
+output/
+tmp/
+*.log

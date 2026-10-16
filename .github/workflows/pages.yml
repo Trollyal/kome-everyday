@@ -1,0 +1,42 @@
+name: Test and deploy GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  test-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check math, state, and shell
+        run: node --test tests/core.test.cjs
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Stage only public runtime files
+        run: |
+          mkdir _site
+          cp index.html sw.js manifest.webmanifest icon.svg apple-touch-icon.png .nojekyll _site/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+  deploy:
+    needs: test-and-package
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

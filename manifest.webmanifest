@@ -1,0 +1,15 @@
+{
+  "id": "./",
+  "name": "Kome · Everyday, your way",
+  "short_name": "Kome",
+  "description": "Simple meals, everyday strength, your own pace.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f8f2",
+  "theme_color": "#f7f8f2",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}
