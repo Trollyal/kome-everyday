@@ -2,6 +2,8 @@
 
 A small, iPhone-first companion for flexible Japanese-inspired meals and returning to strength training. The entire interface, calculations, reference data and app logic live in **one self-contained `index.html`**. No framework, install step, server, account, analytics, remote database or API is needed.
 
+**[Open Kome](https://trollyal.github.io/kome-everyday/)** · [Automatic deployment](https://github.com/Trollyal/kome-everyday/actions/workflows/pages.yml)
+
 ## Use it
 
 - **Today:** choose a meal, keep the familiar rice/chicken foundation, try a transparent portion preset and see the real two-meal arithmetic. Add optional daily snacks below.
@@ -60,6 +62,8 @@ node --test --test-isolation=none tests/core.test.cjs
 ```
 
 The tests extract and execute the actual inline math/validation code. They cover the meal and snack arithmetic, independent vegetable tiers, fixed anchors, editable assumptions, pack remainders, zero/max boundaries, backup round trips, invalid input, untrusted labels, relative service-worker registration and shell assets. They add no runtime dependency.
+
+Release verification: all 12 core tests passed. Browser checks passed locally and on the hosted HTTPS site in Chromium at 320, 375, 390, 430, 768 and 1100 px, including both themes, reduced motion, keyboard slider input, labeled controls, backup export/import and rejection, resets, clipboard fallback, storage denial, standalone-file use and offline reload under the real project subpath. No application console errors were observed. Real-device iPhone/Safari and screen-reader testing remain unverified.
 
 The GitHub Actions workflow tests `main`, stages only `index.html`, `sw.js`, manifest, icons and `.nojekyll`, then deploys with official Pages actions. In **Settings → Pages**, choose **GitHub Actions** as the source. Subsequent pushes to `main` publish automatically after checks pass. A new public repository and Pages site can also be initialized with:
 
